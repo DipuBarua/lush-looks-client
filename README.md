@@ -1,10 +1,12 @@
-## Project: LushLooks #### (Beauty Products)
+## Project: LushLooks  (Beauty Products E-commerce Site)
 - Live: 
 
-### Features:
+#### Features:
 - 
 
-### Node Packages:
+#### Node Packages:
 - react router
-- daisyui
+- daisyUI
 - tailwindcss
+- mambaUI
+- react icons
