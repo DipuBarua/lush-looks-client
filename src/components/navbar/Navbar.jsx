@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import UserDropdown from "./UserDropdown";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-    const user = true;
+    const { user } = useAuth();
+
     const navLinks = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/about'}>About</NavLink></li>
@@ -48,10 +50,10 @@ const Navbar = () => {
                         <UserDropdown></UserDropdown>
                         :
                         <div className=" flex gap-4">
-                            <NavLink className='btn btn-sm btn-secondary' to={''}>
+                            <NavLink className='btn btn-sm btn-secondary' to={'/logIn'}>
                                 Log In
                             </NavLink>
-                            <NavLink className='btn btn-sm btn-outline' to={""}>
+                            <NavLink className='btn btn-sm btn-outline' to={"register"}>
                                 Sign Up
                             </NavLink>
                         </div>

@@ -10,3 +10,4 @@
 - tailwindcss
 - mambaUI
 - react icons
+- react hook form
