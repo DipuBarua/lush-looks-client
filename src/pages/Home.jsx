@@ -1,5 +1,6 @@
 import Banner from "../components/home/Banner";
 import FAQs from "../components/home/FAQs";
+import FeaturedProducts from "../components/home/FeaturedProducts";
 import Testimonials from "../components/home/Testimonials";
 import Contact from "./Contact";
 
@@ -7,7 +8,7 @@ const Home = () => {
     return (
         <div className=" min-h-screen ">
             <Banner></Banner>
-            love from home
+            <FeaturedProducts></FeaturedProducts>
             <Testimonials></Testimonials>
             <FAQs></FAQs>
 

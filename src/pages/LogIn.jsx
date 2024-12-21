@@ -6,15 +6,15 @@ import GoogleLogIn from "../components/socialLogIn/GoogleLogIn";
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const { signIn, user } = useAuth();
+    const { signIn } = useAuth();
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
         // sign In with Auth 
         signIn(data.email, data.password)
             .then(res => {
-                console.log(res);
-                console.log("user", user);
+                // console.log(res);
+                console.log("user", res.user);
                 navigate('/')
             })
             .catch(err => console.log(err))

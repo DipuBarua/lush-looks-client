@@ -6,6 +6,9 @@ import Products from "../pages/Products";
 import Contact from "../pages/Contact";
 import Register from "../pages/Register";
 import LogIn from "../pages/LogIn";
+import OverView from "../pages/dashboard/OverView";
+import AddProduct from "../pages/dashboard/seller/AddProduct";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 const routes = createBrowserRouter([
     {
@@ -39,6 +42,20 @@ const routes = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "/dashboard/overView",
+                element: <OverView></OverView>
+            },
+            {
+                path: "/dashboard/addProduct",
+                element: <AddProduct></AddProduct>
+            },
+        ]
+    }
 ]);
 
 export default routes;

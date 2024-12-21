@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaSquareFacebook, FaXTwitter } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import GoogleLogIn from "../components/socialLogIn/GoogleLogIn";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
@@ -21,9 +23,23 @@ const Register = () => {
 
         // register with Auth 
         createUser(email, data.password)
-            .then(res => {
-                console.log(res);
-                navigate('/')
+            .then(() => {
+
+                axios.post('http://localhost:3001/users', userData)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Your Account Created.",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            navigate('/')
+                        }
+                    })
+                    .catch(error => console.log(error, 'server problem'));
             })
             .catch(err => console.log(err, 'firebase faced problem'))
     }

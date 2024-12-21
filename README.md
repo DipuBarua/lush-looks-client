@@ -11,3 +11,7 @@
 - mambaUI
 - react icons
 - react hook form
+- axios
+- sweetalert2
+- tanstack/react-query
+- react-loader-spinner
