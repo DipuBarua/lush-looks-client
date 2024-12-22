@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
 
             if (currentUser) {
-                axios.post(`http://localhost:3001/authentication`, { email: currentUser.email })
+                axios.post(`https://lush-looks-server.vercel.app/authentication`, { email: currentUser.email })
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem("access-token", res.data?.token);

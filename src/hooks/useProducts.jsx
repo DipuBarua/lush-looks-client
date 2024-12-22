@@ -3,9 +3,9 @@ import axios from "axios";
 
 const useProducts = () => {
     const { data: products = [], refetch } = useQuery({
-        queryKey: ['products'],
+        queryKey: [],
         queryFn: async () => {
-            const result = await axios.get('http://localhost:3001/products')
+            const result = await axios.get('')
             return result.data;
         }
     })

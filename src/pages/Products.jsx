@@ -5,10 +5,9 @@ import SearchBar from "../components/products/SearchBar";
 import SortByPrice from "../components/products/SortByPrice";
 import FilterBar from "../components/products/FilterBar";
 import LoadingPage from "./LoadingPage";
-// import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Products = () => {
-    // const { loading } = useAuth();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
     const [sort, setSort] = useState('asc');
@@ -20,9 +19,9 @@ const Products = () => {
 
 
     useEffect(() => {
+        setLoading(true);
         const fetchProducts = async () => {
-            setLoading(true);
-            await axios.get(`http://localhost:3001/products?title=${search}&sort=${sort}&category=${category}&brand=${brand}`)
+            await axios.get(`https://lush-looks-server.vercel.app/products?title=${search}&sort=${sort}&category=${category}&brand=${brand}`)
                 .then(res => {
                     console.log(res.data);
                     setProducts(res.data.products);
@@ -30,11 +29,13 @@ const Products = () => {
                     setUniqueCategory(res.data.Categories);
                     setLoading(false);
                 })
+                .catch(err => console.log(err))
         }
         fetchProducts();
     }, [search, sort, category, brand]);
 
     console.log('p:', products);
+    console.log(sort, search, brand, category);
 
 
     const handleSearch = (e) => {
@@ -54,13 +55,16 @@ const Products = () => {
 
     return (
         <div className="min-h-screen">
-            <div className=" flex justify-between w-full my-7 mx-2">
+            <Helmet>
+                <title>Products | LushLooks</title>
+            </Helmet>
+            <div className=" flex justify-between my-7 mx-2">
                 <SearchBar handleSearch={handleSearch}></SearchBar>
                 <SortByPrice setSort={setSort}></SortByPrice>
             </div>
 
 
-            <div className="w-full grid md:grid-cols-12 gap-2">
+            <div className=" grid md:grid-cols-12 gap-2">
                 <div className="md:col-span-3 h-full">
                     <FilterBar
                         setBrand={setBrand}

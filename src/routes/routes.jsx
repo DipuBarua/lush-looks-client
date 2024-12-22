@@ -9,6 +9,13 @@ import LogIn from "../pages/LogIn";
 import OverView from "../pages/dashboard/OverView";
 import AddProduct from "../pages/dashboard/seller/AddProduct";
 import DashboardLayout from "../layouts/DashboardLayout";
+import MyProducts from "../pages/dashboard/seller/MyProducts";
+import MyWishlist from "../pages/dashboard/buyer/MyWishlist";
+import PrivateRoute from "./private/PrivateRoute";
+import SellerRoute from "./private/SellerRoute";
+import BuyerRoute from "./private/BuyerRoute";
+import EditProduct from "../pages/dashboard/seller/EditProduct";
+import AllUsers from "../pages/dashboard/admin/AllUsers";
 
 const routes = createBrowserRouter([
     {
@@ -44,15 +51,31 @@ const routes = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/overView",
                 element: <OverView></OverView>
             },
             {
+                path: "/dashboard/allUsers",
+                element: <AllUsers></AllUsers>
+            },
+            {
                 path: "/dashboard/addProduct",
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path: "/dashboard/myProducts",
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: "/dashboard/editProduct",
+                element: <SellerRoute><EditProduct></EditProduct></SellerRoute>
+            },
+            {
+                path: "/dashboard/myWishlist",
+                element: <BuyerRoute><MyWishlist></MyWishlist></BuyerRoute>
             },
         ]
     }

@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import GoogleLogIn from "../components/socialLogIn/GoogleLogIn";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
@@ -15,17 +16,18 @@ const Register = () => {
         // console.log(data);
         const name = data.name;
         const email = data.email;
+        const role = data.role;
         const status = data.role === 'buyer' ? "approved" : "pending";
         const wishlist = [];
 
-        const userData = { name, email, status, wishlist }
+        const userData = { name, email, role, status, wishlist }
         console.log(userData);
 
         // register with Auth 
         createUser(email, data.password)
             .then(() => {
 
-                axios.post('http://localhost:3001/users', userData)
+                axios.post('https://lush-looks-server.vercel.app/users', userData)
                     .then(res => {
                         if (res.data.insertedId) {
                             Swal.fire({
@@ -46,6 +48,9 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>SignUp | LushLooks</title>
+            </Helmet>
             <div className="w-full mx-auto max-w-md p-8 my-8 space-y-3 rounded-md bg-gray-700 text-gray-100">
                 <h1 className="text-2xl font-bold text-center">Create Your Account</h1>
 

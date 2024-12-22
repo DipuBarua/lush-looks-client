@@ -53,7 +53,7 @@ const Navbar = () => {
                             <NavLink className='btn btn-sm btn-secondary' to={'/logIn'}>
                                 Log In
                             </NavLink>
-                            <NavLink className='btn btn-sm btn-outline' to={"register"}>
+                            <NavLink className='btn btn-sm btn-outline' to={"/register"}>
                                 Sign Up
                             </NavLink>
                         </div>

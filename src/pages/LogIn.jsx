@@ -3,6 +3,7 @@ import { FaSquareFacebook, FaXTwitter } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import GoogleLogIn from "../components/socialLogIn/GoogleLogIn";
+import { Helmet } from "react-helmet-async";
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm();
@@ -22,6 +23,9 @@ const LogIn = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>SignIn | LushLooks</title>
+            </Helmet>
             <div className="w-full mx-auto max-w-md my-8 p-4 rounded-md shadow sm:p-8 bg-secondary dark:text-gray-100">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
                 <p className="text-sm text-center dark:text-gray-400">Dont have account?
