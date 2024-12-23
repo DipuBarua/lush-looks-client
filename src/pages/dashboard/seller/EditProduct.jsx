@@ -130,7 +130,7 @@ const EditProduct = () => {
 
                     <div className="form-control my-6 grid md:grid-cols-2 gap-12">
                         <button type="submit" className="btn btn-outline text-secondary">Edit Product</button>
-                        <button type="submit" className="btn btn-outline text-secondary">Cencle</button>
+                        {/* <button type="submit" className="btn btn-outline text-secondary">Cencle</button> */}
                     </div>
 
                 </form>

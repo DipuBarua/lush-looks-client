@@ -2,7 +2,7 @@ import { FaPenSquare } from "react-icons/fa";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const MyProductsTable = ({ index, item, refetch }) => {
+const MyProductsTable = ({ index, item }) => {
 
     const handleViewDetails = (id) => {
         console.log(id);

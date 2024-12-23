@@ -1,5 +1,49 @@
+import axios from "axios";
+import useUserData from "../../hooks/useUserData";
+import Swal from "sweetalert2";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product, isInWishlist, setLatestWishlist }) => {
+
+    const { email } = useUserData();
+
+    const handleWishlist = () => {
+        axios.patch('https://lush-looks-server.vercel.app/wishlist/add', {
+            userEmail: email,
+            productId: product._id,
+        })
+            .then(res => {
+                if (res.data.modifiedCount == 1) {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Added to wishlist",
+                        icon: "success",
+                        showConfirmButton: false,
+                    });
+                }
+            })
+            .catch(err => console.log(err, 'failed to add'));
+    }
+
+    const handleRemoveFromWishlist = () => {
+        axios.patch('https://lush-looks-server.vercel.app/wishlist/remove', {
+            userEmail: email,
+            productId: product._id,
+        })
+            .then(res => {
+                if (res.data.modifiedCount == 1) {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Removed from wishlist",
+                        icon: "success",
+                        showConfirmButton: false,
+                    });
+                    setLatestWishlist(prev => !prev)
+                }
+            })
+            .catch(err => console.log(err, 'failed to add'));
+    }
+
+
     return (
         <div className=" bg-slate-100 rounded-md border shadow-md">
 
@@ -27,7 +71,7 @@ const ProductCard = ({product}) => {
                     }
                 </h2>
 
-                {/* <div className="">
+                <div className="">
                     {
                         (isInWishlist) ?
                             <button onClick={handleRemoveFromWishlist} className="btn btn-sm mt-4 w-full rounded-md bg-red-600 text-white">Remove from wishlist</button>
@@ -35,7 +79,7 @@ const ProductCard = ({product}) => {
                             <button onClick={handleWishlist} className="btn btn-outline btn-sm mt-4 w-full rounded-none">Add to wishlist</button>
 
                     }
-                </div> */}
+                </div>
             </div>
         </div>
     );
