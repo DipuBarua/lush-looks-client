@@ -1,26 +1,25 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import useProducts from "../../hooks/useProducts";
+import ProductCard from "../cards/ProductCard";
 
 const FeaturedProducts = () => {
-    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        const fetch = async () => {
-            // await axios.get(`http://localhost:3001/all-products`)
-            await axios.get(`https://lush-looks-server.vercel.app/all-products`)
-                .then(res => {
-                    console.log(res.data);
-                    setProducts(res.data)
-                })
-        }; fetch();
-    }, []);
-
-    console.log("all:", products);
-    console.log("all length", products.length);
+    const [products, refetch] = useProducts();
 
     return (
-        <div className=" min-h-screen">
-            Showing some attractive featured products.
+        <div className=" min-h-screen my-8">
+            <div className="container flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12">
+                <h1 className="p-4 text-4xl font-semibold leadi text-center">Our Featured Products</h1>
+            </div>
+
+            <div className="grid md:grid-cols-3 justify-center gap-7 px-12">
+                {
+                    products.slice(0, Math.floor(Math.random() * 10)).map(product => <ProductCard
+                        key={product._id}
+                        product={product}
+                    ></ProductCard>)
+                }
+            </div>
+
         </div>
     );
 };

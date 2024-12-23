@@ -10,12 +10,14 @@ const EditProduct = () => {
     const { id } = useParams();
 
     const { data: product = [], refetch } = useQuery({
-        queryKey: [],
+        queryKey: ['seller', 'edit-product', id],
         queryFn: async () => {
             const result = await axios.get(`https://lush-looks-server.vercel.app/seller/edit-product/${id}`)
             return result.data;
         }
     })
+
+    console.log('edit:', product);
 
 
     const updateSubmit = (data) => {

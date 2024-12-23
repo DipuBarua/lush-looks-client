@@ -1,11 +1,16 @@
 import { FaPenSquare } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa6";
+import { FaEye, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-const MyProductsTable = ({ index, item }) => {
+const MyProductsTable = ({ index, item, refetch }) => {
 
+    const handleViewDetails = (id) => {
+        console.log(id);
+    }
 
-    // title, brand, stock, price, category, image, description, sellerEmail
+    const handleDelete = (id) => {
+        console.log(id);
+    }
 
     return (
         <tr >
@@ -20,7 +25,7 @@ const MyProductsTable = ({ index, item }) => {
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
-                            <img src={''} alt={''} />
+                            <img src={item?.image} alt={'img'} />
                         </div>
                     </div>
                 </div>
@@ -51,6 +56,13 @@ const MyProductsTable = ({ index, item }) => {
                 <div className="font-bold">{item?.price}</div>
             </td>
 
+            {/* Details view */}
+            <td>
+                <button onClick={() => handleViewDetails(item._id)} className="btn border border-amber-700 hover:bg-gray-400">
+                    <FaEye className=" text-xl" />
+                </button>
+            </td>
+
             {/* Edit btn */}
             <td>
                 <Link to={`/dashboard/editProduct/${item._id}`} className="btn btn-ghost">
@@ -59,18 +71,11 @@ const MyProductsTable = ({ index, item }) => {
             </td>
 
             {/* DELETE btn */}
-            {/* <td>
+            <td>
                 <button onClick={() => handleDelete(item._id)} className="btn btn-ghost">
                     <FaTrash className=" text-xl text-red-600" />
                 </button>
-            </td> */}
-
-            {/* Details view */}
-            {/* <td>
-                <button onClick={() => handleView(item._id)} className="btn border border-amber-700 hover:bg-gray-400">
-                    <FaEye className=" text-xl" />
-                </button>
-            </td> */}
+            </td>
 
         </tr>
     );

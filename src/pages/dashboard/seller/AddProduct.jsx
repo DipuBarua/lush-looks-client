@@ -17,9 +17,9 @@ const AddProduct = () => {
         const category = data.category;
         const image = data.image;
         const description = data.description;
-        const sellerEmail = user.email;
+        const email = user.email;
 
-        const product = { title, brand, stock, price, category, image, description, sellerEmail }
+        const product = { title, brand, stock, price, category, image, description, email }
         console.log(product);
 
         // send jwt token 

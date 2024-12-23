@@ -6,6 +6,7 @@ import SortByPrice from "../components/products/SortByPrice";
 import FilterBar from "../components/products/FilterBar";
 import LoadingPage from "./LoadingPage";
 import { Helmet } from "react-helmet-async";
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -17,25 +18,26 @@ const Products = () => {
     const [uniqueBrand, setUniqueBrand] = useState([]);
     const [uniqueCategory, setUniqueCategory] = useState([]);
 
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
 
     useEffect(() => {
         setLoading(true);
         const fetchProducts = async () => {
-            await axios.get(`https://lush-looks-server.vercel.app/products?title=${search}&sort=${sort}&category=${category}&brand=${brand}`)
+            await axios.get(`https://lush-looks-server.vercel.app/products?title=${search}&sort=${sort}&category=${category}&brand=${brand}&page=${page}&limit=${6}`)
                 .then(res => {
-                    console.log(res.data);
+                    console.log('filter:', res.data);
                     setProducts(res.data.products);
                     setUniqueBrand(res.data.Brands);
                     setUniqueCategory(res.data.Categories);
+                    setTotalPages(Math.ceil(res.data.totalProducts / 6));
                     setLoading(false);
                 })
                 .catch(err => console.log(err))
         }
         fetchProducts();
-    }, [search, sort, category, brand]);
-
-    console.log('p:', products);
-    console.log(sort, search, brand, category);
+    }, [search, sort, category, brand, page]);
 
 
     const handleSearch = (e) => {
@@ -50,6 +52,14 @@ const Products = () => {
         setCategory('');
         setSearch('');
         window.location.reload();
+    }
+
+    // pagination 
+    const handlePage = (newPage) => {
+        if (newPage > 0 && newPage <= totalPages) {
+            setPage(newPage);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
     }
 
 
@@ -95,8 +105,25 @@ const Products = () => {
                                     }
                                 </>
                         }
-
                     </div>
+
+                    {/* pagination  */}
+                    <div className="p-7 flex gap-7 justify-center items-center">
+                        <button
+                            onClick={() => handlePage(page - 1)}
+                            className=" btn btn-outline rounded-full border"
+                            disabled={page === 1}>
+                            <MdOutlineKeyboardArrowLeft />
+                        </button>
+                        <h1 className=" font-medium">page {page} of {totalPages}</h1>
+                        <button
+                            onClick={() => handlePage(page + 1)}
+                            className="btn btn-outline rounded-full border"
+                            disabled={page === totalPages}>
+                            <MdOutlineKeyboardArrowRight />
+                        </button>
+                    </div>
+
                 </div>
             </div>
 

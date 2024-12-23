@@ -2,7 +2,7 @@
 - Live: https://lush-looks-client.vercel.app/
 
 #### Credentials:
-- Admin [ ]
+- Admin [ admin@gmail.com | 11111aA@ ]
 - Buyer [ buyer@gmail.com | 11111aA@ ]
 - Seller [ seller@gmail.com | 11111aA@ ]
 

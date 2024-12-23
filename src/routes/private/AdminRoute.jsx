@@ -8,8 +8,6 @@ const AdminRoute = ({ children }) => {
     const userData = useUserData();
     const location = useLocation();
 
-    // need more security >>>>
-
     if (loading) {
         return <LoadingPage />;
     }

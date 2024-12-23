@@ -17,7 +17,6 @@ const FilterBar = ({ setBrand, setCategory, uniqueBrand, uniqueCategory, handleR
                         onChange={(e) => { setBrand(e.target.value) }}
                         className="select focus:select-bordered focus:outline-none rounded-md w-full max-w-xs">
                         <option value={''}>Brand</option>
-                        <option value={'brand'}>Brand</option>
                         {
                             uniqueBrand.map((item, index) =>
                                 <option key={index} value={item}>
@@ -32,7 +31,6 @@ const FilterBar = ({ setBrand, setCategory, uniqueBrand, uniqueCategory, handleR
                         onChange={(e) => { setCategory(e.target.value) }}
                         className="select focus:select-bordered focus:outline-none rounded-md w-full max-w-xs">
                         <option value={''}>Category</option>
-                        <option value={'category'}>Category</option>
                         {
                             uniqueCategory.map((item, index) =>
                                 <option key={index} value={item}>

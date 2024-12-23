@@ -18,9 +18,10 @@ const Register = () => {
         const email = data.email;
         const role = data.role;
         const status = data.role === 'buyer' ? "approved" : "pending";
+        const image = ''; //need to update
         const wishlist = [];
 
-        const userData = { name, email, role, status, wishlist }
+        const userData = { name, email, role, status, image, wishlist }
         console.log(userData);
 
         // register with Auth 
