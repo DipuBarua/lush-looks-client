@@ -7,7 +7,7 @@ const Contact = () => {
         // mambaUI
         <>
             <Helmet>
-                <title>Contact | LushLooks</title>
+                {/* <title>Contact | LushLooks</title> */}
             </Helmet>
             <section className="py-6 bg-pink-100">
                 <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x border">

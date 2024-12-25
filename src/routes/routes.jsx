@@ -17,6 +17,7 @@ import BuyerRoute from "./private/BuyerRoute";
 import EditProduct from "../pages/dashboard/seller/EditProduct";
 import AllUsers from "../pages/dashboard/admin/AllUsers";
 import AdminRoute from "./private/AdminRoute";
+import DetailsCard from "../components/cards/DetailsCard";
 
 const routes = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const routes = createBrowserRouter([
             {
                 path: '/products',
                 element: <Products></Products>
+            },
+            {
+                path: '/viewDetailsProduct/:id',
+                element: <DetailsCard></DetailsCard>
             },
             {
                 path: '/contact',
@@ -71,7 +76,7 @@ const routes = createBrowserRouter([
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
-                path: "/dashboard/editProduct",
+                path: `/dashboard/editProduct/:id`,
                 element: <SellerRoute><EditProduct></EditProduct></SellerRoute>
             },
             {

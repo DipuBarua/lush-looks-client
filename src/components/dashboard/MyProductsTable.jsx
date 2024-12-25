@@ -1,15 +1,47 @@
+import axios from "axios";
 import { FaPenSquare } from "react-icons/fa";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const MyProductsTable = ({ index, item }) => {
+const MyProductsTable = ({ index, item, refetch }) => {
 
-    const handleViewDetails = (id) => {
-        console.log(id);
-    }
+    const token = localStorage.getItem('access-token');
 
     const handleDelete = (id) => {
-        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then(res => {
+                if (res.isConfirmed) {
+                    axios.delete(`https://lush-looks-server.vercel.app/seller/delete-product/${id}`, {
+                        headers: { authorization: `Bearer ${token}` }
+                    })
+                        .then(res => {
+                            if (res.data) {
+                                console.log(res.data.deletedCount > 0);
+                                if (res.data) {
+                                    Swal.fire({
+                                        title: "Success",
+                                        text: "Your Product successfully Deleted",
+                                        icon: "success",
+                                        timer: 1000,
+                                        showConfirmButton: false,
+                                    });
+                                    refetch();
+                                }
+                            }
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+
     }
 
     return (
@@ -58,9 +90,9 @@ const MyProductsTable = ({ index, item }) => {
 
             {/* Details view */}
             <td>
-                <button onClick={() => handleViewDetails(item._id)} className="btn border border-amber-700 hover:bg-gray-400">
+                <Link to={`/viewDetailsProduct/${item._id}`} className="btn btn-ghost">
                     <FaEye className=" text-xl" />
-                </button>
+                </Link>
             </td>
 
             {/* Edit btn */}

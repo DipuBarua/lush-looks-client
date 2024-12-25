@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className=" min-h-screen ">
             <Helmet>
-                <title>Home | LushLooks</title>
+                <title title="home">Home | LushLooks</title>
             </Helmet>
 
             <Banner></Banner>

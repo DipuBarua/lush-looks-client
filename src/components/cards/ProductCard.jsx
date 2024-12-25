@@ -1,6 +1,7 @@
 import axios from "axios";
 import useUserData from "../../hooks/useUserData";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, isInWishlist, setLatestWishlist }) => {
 
@@ -47,10 +48,13 @@ const ProductCard = ({ product, isInWishlist, setLatestWishlist }) => {
     return (
         <div className=" bg-slate-100 rounded-md border shadow-md">
 
-            <img
-                src={product?.image}
-                alt={product?.title}
-                className=" object-cover h-60 w-full rounded-t-md" />
+            <Link to={`/viewDetailsProduct/${product._id}`} className="">
+                <img
+                    src={product?.image}
+                    alt={product?.title}
+                    className=" object-cover h-60 w-full rounded-t-md hover:border-b-4 hover:p-1" />
+            </Link>
+
 
             <div className=" p-3 space-y-1">
                 <h1 className="text-xl font-semibold ">{product?.title}</h1>
@@ -76,7 +80,13 @@ const ProductCard = ({ product, isInWishlist, setLatestWishlist }) => {
                         (isInWishlist) ?
                             <button onClick={handleRemoveFromWishlist} className="btn btn-sm mt-4 w-full rounded-md bg-red-600 text-white">Remove from wishlist</button>
                             :
-                            <button onClick={handleWishlist} className="btn btn-outline btn-sm mt-4 w-full rounded-none">Add to wishlist</button>
+                            <>
+                                {
+                                    (email) &&
+                                    <button onClick={handleWishlist} className="btn btn-outline btn-sm mt-4 w-full rounded-none">Add to wishlist</button>
+                                }
+                            </>
+
 
                     }
                 </div>

@@ -98,61 +98,60 @@ const AddProduct = () => {
                         {errors.category && <p className=" text-red-500">Something went wrong!</p>}
                     </div>
 
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Stock</span>
-                        </label>
-                        <input
-                            type="number"
-                            placeholder="Product Stock"
-                            className="input input-bordered input-sm rounded-none"
-                            {...register("stock", { required: true })}
-                        />
-                        {errors.stock && <p className=" text-red-500">Something went wrong!</p>}
-                    </div>
 
                     <div className=" flex justify-between gap-4">
-                        <div className=" w-full">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Price</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Price"
-                                    className="input input-bordered input-sm rounded-none"
-                                    {...register("price", { required: true })}
-                                />
-                                {errors.price && <p className=" text-red-500">Something went wrong!</p>}
-                            </div>
-
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Image</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Product Image URL"
-                                    className="input input-bordered input-sm rounded-none"
-                                    {...register("image", { required: true })}
-                                />
-                                {errors.image && <p className=" text-red-500">Something went wrong!</p>}
-                            </div>
-                        </div>
-
-                        <div className="form-control h-full w-full">
+                        <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Description</span>
+                                <span className="label-text">Price</span>
                             </label>
-                            <textarea
+                            <input
                                 type="text"
-                                placeholder="Description"
+                                placeholder="Product Price"
                                 className="input input-bordered input-sm rounded-none"
-
-                                {...register("description", { required: true })}
+                                {...register("price", { required: true })}
                             />
-                            {errors.description && <p className=" text-red-500">Something went wrong!</p>}
+                            {errors.price && <p className=" text-red-500">Something went wrong!</p>}
                         </div>
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Stock</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder="Product Stock"
+                                className="input input-bordered input-sm rounded-none"
+                                {...register("stock", { required: true })}
+                            />
+                            {errors.stock && <p className=" text-red-500">Something went wrong!</p>}
+                        </div>
+                    </div>
+
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Image</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Product Image URL"
+                            className="input input-bordered input-sm rounded-none"
+                            {...register("image", { required: true })}
+                        />
+                        {errors.image && <p className=" text-red-500">Something went wrong!</p>}
+                    </div>
+
+                    <div className="form-control h-full w-full">
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea
+                            type="text"
+                            placeholder="Product Description"
+                            className="input input-bordered p-2 rounded-none"
+                            {...register("description", { required: true })}
+                        />
+                        {errors.description && <p className=" text-red-500">Something went wrong!</p>}
                     </div>
 
                     <div className="form-control my-6">

@@ -1,18 +1,27 @@
 import { NavLink } from "react-router-dom";
 import UserDropdown from "./UserDropdown";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Navbar = () => {
     const { user } = useAuth();
 
+    const [title, setTitle] = useState('');
+
     const navLinks = <>
-        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/'} onClick={() => setTitle('Home')}>Home</NavLink></li>
         <li><NavLink to={'/about'}>About</NavLink></li>
         <li><NavLink to={'/products'}>Products</NavLink></li>
-        <li><NavLink to={'/contact'}>Contact</NavLink></li>
+        <li><NavLink to={'/contact'} onClick={() => setTitle('Contact')}>Contact</NavLink></li>
     </>
     return (
         <div className="navbar bg-secondary">
+
+            <Helmet defaultTitle={title}>
+                <title title={title}>{title} | LushLooks</title>
+            </Helmet>
+
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
